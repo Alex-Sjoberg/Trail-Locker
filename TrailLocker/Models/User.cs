@@ -7,9 +7,11 @@ namespace TrailLocker.Models
 {
     public class User
     {
+        private String username { get; private set; }
         private String name { get; private set; }
         private String home { get; private set; }
         public int maxWeight { get; private set; }
+        public List<String> friends { get; private set; }
 
         private Locker locker;
         private List<Trip> trips;
