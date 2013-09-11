@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>TrailLocker home page stub!</h2>
+
+<div>Create a new trip!</div>
+
+@* 
+this method of passing information doesnt seem to work?
+*@
+<form name = "input" action = "Trip" method = "get">
+
+    <input name = "Destination" type = "submit" value = "Broken :(" />
+    <select id = "Destination">
+        <option value = Upland> Upland, IN :/</option>
+        <option value = Taiwan> Taiwan!</option>
+    </select>
+</form>
+
+@*
+Werid cshtml stuff for passing info to a controller>
+*@
+@Html.ActionLink("Create New", "Trip")
+    @using (Html.BeginForm("NewTrip", "Trip"))
+    {
+        @*<p>Title @Html.TextBox("destination") <br />*@
+        <input type = "text" name = "destination" />
+        <input type = "submit" value = "Create new Trip!" />
+    }

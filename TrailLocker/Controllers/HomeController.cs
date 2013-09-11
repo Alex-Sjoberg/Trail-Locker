@@ -3,37 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using TrailLocker.Models;
+
+/* Controller for the homepage/default url
+ * When someone first navigates to the page, the Index() function will be run
+ * 
+ */
 
 namespace TrailLocker.Controllers
 {
-    public class TripController : Controller
+    public class HomeController : Controller
     {
         //
-        // GET: /Trip/
+        // GET: /Home/
 
         public ActionResult Index()
         {
+            //Will probably check to see if a user is logged in
+            //If they are, retrieve their info from the DB and display a home page for them
+            //If not display create account page or something?
             return View();
         }
 
-        public ActionResult NewTrip(string destination , int times = 5)
-        {
-            ViewBag.destination = destination;
-            ViewBag.times = times;
-
-            return View();
-        }
-
-        public ActionResult ViewTrip()
-        {
-            Trip my_trip = new Trip();
-
-            return View(my_trip);
-        }
-/*
+        //Haven't looked through the rest of these yet, but they came with the template.
         //
-        // GET: /Trip/Details/5
+        // GET: /Home/Details/5
 
         public ActionResult Details(int id)
         {
@@ -41,7 +34,7 @@ namespace TrailLocker.Controllers
         }
 
         //
-        // GET: /Trip/Create
+        // GET: /Home/Create
 
         public ActionResult Create()
         {
@@ -49,7 +42,7 @@ namespace TrailLocker.Controllers
         } 
 
         //
-        // POST: /Trip/Create
+        // POST: /Home/Create
 
         [HttpPost]
         public ActionResult Create(FormCollection collection)
@@ -67,7 +60,7 @@ namespace TrailLocker.Controllers
         }
         
         //
-        // GET: /Trip/Edit/5
+        // GET: /Home/Edit/5
  
         public ActionResult Edit(int id)
         {
@@ -75,7 +68,7 @@ namespace TrailLocker.Controllers
         }
 
         //
-        // POST: /Trip/Edit/5
+        // POST: /Home/Edit/5
 
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
@@ -93,7 +86,7 @@ namespace TrailLocker.Controllers
         }
 
         //
-        // GET: /Trip/Delete/5
+        // GET: /Home/Delete/5
  
         public ActionResult Delete(int id)
         {
@@ -101,7 +94,7 @@ namespace TrailLocker.Controllers
         }
 
         //
-        // POST: /Trip/Delete/5
+        // POST: /Home/Delete/5
 
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
@@ -116,6 +109,6 @@ namespace TrailLocker.Controllers
             {
                 return View();
             }
-        }*/
+        }
     }
 }

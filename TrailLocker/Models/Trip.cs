@@ -8,20 +8,20 @@ namespace TrailLocker.Models
     public class Trip
     {
         //Instance Variables
-        private float current_weight { get; private set; }
-        private float total_capacity { get; private set; }
+        public float current_weight { get; private set; }
+        public float total_capacity { get; private set; }
 
-        private User trip_leader {get; private set;}
-        private List<User> travellers {get; private set;}
+        public User trip_leader { get; private set; }
+        public List<User> travellers { get; private set; }
 
-        private List<Item> items {get; private set;}
+        public List<Item> items { get; private set; }
 
-        private String destination {get; private set;}
-        private DateTime start_time { get; private set; }
-        private DateTime end_time { get; private set; }
-        private String weather { get; private set; }
+        public String destination { get; private set; }
+        public DateTime start_time { get; private set; }
+        public DateTime end_time { get; private set; }
+        public String weather { get; private set; }
 
-        private String description { get; private set; }
+        public String description { get; private set; }
 
         //Constructor
         public Trip()
