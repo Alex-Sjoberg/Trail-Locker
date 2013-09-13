@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data.Entity;
 
 namespace TrailLocker.Models
 {
     public class Trip
     {
         //Instance Variables
+        public Guid ID { get; set; }
+        //public int ID { get; set; }
+
         public float current_weight { get; private set; }
         public float total_capacity { get; private set; }
 
@@ -26,6 +30,7 @@ namespace TrailLocker.Models
         //Constructor
         public Trip()
         {
+            ID = new Guid();
             current_weight = 0;
         }
 
@@ -71,6 +76,13 @@ namespace TrailLocker.Models
             return 1;
         }
     }
+
+
+    public class TripDBContext : DbContext
+    {
+        public DbSet<Trip> Trips {get; set;}
+    }
+
 }
 
 /*

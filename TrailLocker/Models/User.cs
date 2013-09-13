@@ -7,6 +7,9 @@ namespace TrailLocker.Models
 {
     public class User
     {
+        public Guid ID { get; set; } //for testing DB stuff
+        //public int ID { get; set; }
+
         public String username { get; private set; }
         public String name { get; private set; }
         public String home { get; private set; }

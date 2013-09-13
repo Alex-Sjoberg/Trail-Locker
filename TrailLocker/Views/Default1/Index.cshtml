@@ -1,0 +1,69 @@
+﻿@model IEnumerable<TrailLocker.Models.Trip>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            current_weight
+        </th>
+        <th>
+            total_capacity
+        </th>
+        <th>
+            destination
+        </th>
+        <th>
+            start_time
+        </th>
+        <th>
+            end_time
+        </th>
+        <th>
+            weather
+        </th>
+        <th>
+            description
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.current_weight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.total_capacity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.destination)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.start_time)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.end_time)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.weather)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
