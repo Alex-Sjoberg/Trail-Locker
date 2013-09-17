@@ -59,6 +59,7 @@ namespace TrailLocker.Models
         public int find_weather()
         {
             return 1;
+
         }
 
         public int add_traveller(User new_traveller)
