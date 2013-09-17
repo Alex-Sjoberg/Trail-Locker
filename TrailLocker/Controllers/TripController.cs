@@ -1,43 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TrailLocker.Models;
 
 namespace TrailLocker.Controllers
-{
+{ 
     public class TripController : Controller
     {
+        private TripDBContext db = new TripDBContext();
+
         //
         // GET: /Trip/
 
-        public ActionResult Index()
+        public ViewResult Index()
         {
-            return View();
+            return View(db.Trips.ToList());
         }
 
-        public ActionResult NewTrip(string destination , int times = 5)
-        {
-            ViewBag.destination = destination;
-            ViewBag.times = times;
-
-            return View();
-        }
-
-        public ActionResult ViewTrip()
-        {
-            Trip my_trip = new Trip();
-
-            return View(my_trip);
-        }
-/*
         //
         // GET: /Trip/Details/5
 
-        public ActionResult Details(int id)
+        public ViewResult Details(Guid id)
         {
-            return View();
+            Trip trip = db.Trips.Find(id);
+            return View(trip);
         }
 
         //
@@ -52,70 +42,68 @@ namespace TrailLocker.Controllers
         // POST: /Trip/Create
 
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Trip trip)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
+                trip.ID = Guid.NewGuid();
+                db.Trips.Add(trip);
+                db.SaveChanges();
+                return RedirectToAction("Index");  
+            }
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return View(trip);
         }
         
         //
         // GET: /Trip/Edit/5
  
-        public ActionResult Edit(int id)
+        public ActionResult Edit(Guid id)
         {
-            return View();
+            Trip trip = db.Trips.Find(id);
+            return View(trip);
         }
 
         //
         // POST: /Trip/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Trip trip)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
- 
+                db.Entry(trip).State = EntityState.Modified;
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            return View(trip);
         }
 
         //
         // GET: /Trip/Delete/5
  
-        public ActionResult Delete(int id)
+        public ActionResult Delete(Guid id)
         {
-            return View();
+            Trip trip = db.Trips.Find(id);
+            return View(trip);
         }
 
         //
         // POST: /Trip/Delete/5
 
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(Guid id)
+        {            
+            Trip trip = db.Trips.Find(id);
+            db.Trips.Remove(trip);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        protected override void Dispose(bool disposing)
         {
-            try
-            {
-                // TODO: Add delete logic here
- 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }*/
+            db.Dispose();
+            base.Dispose(disposing);
+        }
     }
 }

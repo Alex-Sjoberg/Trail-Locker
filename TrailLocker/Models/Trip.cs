@@ -12,26 +12,31 @@ namespace TrailLocker.Models
         public Guid ID { get; set; }
         //public int ID { get; set; }
 
-        public float current_weight { get; private set; }
-        public float total_capacity { get; private set; }
+        public float current_weight { get; set; }
+        public float total_capacity { get;  set; }
 
+        public String destination { get; set; }
+
+        /*
         public User trip_leader { get; private set; }
         public List<User> travellers { get; private set; }
 
         public List<Item> items { get; private set; }
 
-        public String destination { get; private set; }
+        
         public DateTime start_time { get; private set; }
         public DateTime end_time { get; private set; }
         public String weather { get; private set; }
 
         public String description { get; private set; }
-
+         */
+        
         //Constructor
         public Trip()
         {
             ID = new Guid();
             current_weight = 0;
+            total_capacity = 0;
         }
 
         //Methods
@@ -82,6 +87,12 @@ namespace TrailLocker.Models
     public class TripDBContext : DbContext
     {
         public DbSet<Trip> Trips {get; set;}
+    }
+
+    public class TripTestDBContext : DbContext
+    {
+        public DbSet<Trip> TripTest { get; set; }
+        
     }
 
 }

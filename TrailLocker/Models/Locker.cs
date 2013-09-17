@@ -7,6 +7,7 @@ namespace TrailLocker.Models
 {
     public class Locker
     {
+        public Guid ID { get; set; }
         //stub
     }
 }
