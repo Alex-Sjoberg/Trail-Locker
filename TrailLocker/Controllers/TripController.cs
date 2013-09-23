@@ -11,7 +11,7 @@ namespace TrailLocker.Controllers
 { 
     public class TripController : Controller
     {
-        private TripDBContext db = new TripDBContext();
+        private TrailLockerEntities db = new TrailLockerEntities();
 
         //
         // GET: /Trip/
@@ -33,8 +33,9 @@ namespace TrailLocker.Controllers
         //
         // GET: /Trip/Create
 
-        public ActionResult Create()
+        public ActionResult Create(Guid userID)
         {
+            ViewBag.userID = userID;
             return View();
         } 
 
@@ -42,11 +43,13 @@ namespace TrailLocker.Controllers
         // POST: /Trip/Create
 
         [HttpPost]
-        public ActionResult Create(Trip trip)
+        public ActionResult Create(Trip trip , Guid userID)
         {
             if (ModelState.IsValid)
             {
-                trip.ID = Guid.NewGuid();
+                User trip_leader = db.Users.Find(userID);
+                trip.TripID = Guid.NewGuid();
+                trip_leader.trips.Add(trip);
                 db.Trips.Add(trip);
                 db.SaveChanges();
                 return RedirectToAction("Index");  

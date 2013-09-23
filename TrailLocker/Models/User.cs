@@ -7,22 +7,30 @@ namespace TrailLocker.Models
 {
     public class User
     {
-        public Guid ID { get; set; } //for testing DB stuff
+        public Guid UserID { get; set; } //for testing DB stuff
         //public int ID { get; set; }
 
-        public String username { get; private set; }
-        public String name { get; private set; }
-        public String home { get; private set; }
-        public int maxWeight { get; private set; }
-        public List<String> friends { get; private set; }
+        public String username { get;  set; }
+        public String name { get; set; }
+        public String home { get; set; }
+        public int maxWeight { get; set; }
 
-        private Locker locker;
-        private List<Trip> trips;
+        public virtual List<User> friends { get; set; }
+
+        public Locker locker;
+        public  ICollection<Trip> trips;
 
         public User(String name, int maxWeight)
         {
             this.name = name;
             this.maxWeight = maxWeight;
+        }
+
+        public User()
+        {
+            this.name = "Unknown";
+            this.maxWeight = 0;
+            this.trips = new List<Trip>();
         }
     }
 }

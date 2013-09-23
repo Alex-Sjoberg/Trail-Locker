@@ -9,34 +9,33 @@ namespace TrailLocker.Models
     public class Trip
     {
         //Instance Variables
-        public Guid ID { get; set; }
-        //public int ID { get; set; }
+        public Guid TripID { get; set; }
+        public Guid UserID { get; set; }
 
         public float current_weight { get; set; }
         public float total_capacity { get;  set; }
 
         public String destination { get; set; }
 
-        /*
-        public User trip_leader { get; private set; }
-        public List<User> travellers { get; private set; }
+        //public virtual User trip_leader { get; set; } //Not necessary? Trip leader will be UserID basically?
 
-        public List<Item> items { get; private set; }
+        public virtual ICollection<User> travellers { get; private set; }
+
+        public virtual ICollection<Item> items { get; private set; }
 
         
-        public DateTime start_time { get; private set; }
-        public DateTime end_time { get; private set; }
-        public String weather { get; private set; }
+      //  public DateTime start_time { get; private set; }
+      //  public DateTime end_time { get; private set; }
+        public String weather { get; set; }
 
-        public String description { get; private set; }
-         */
+        public String description { get; set; }
         
         //Constructor
         public Trip()
         {
-            ID = new Guid();
-            current_weight = 0;
-            total_capacity = 0;
+            this.TripID = new Guid();
+            this.current_weight = 0;
+            this.total_capacity = 0;
         }
 
         //Methods

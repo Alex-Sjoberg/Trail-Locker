@@ -7,7 +7,9 @@ namespace TrailLocker.Models
 {
     public class Locker
     {
-        public Guid ID { get; set; }
+        public Guid LockerID { get; set; }
+        public virtual List<Item> MyItems { get; set; }
+        public Guid UserID { get; set; }
         //stub
     }
 }

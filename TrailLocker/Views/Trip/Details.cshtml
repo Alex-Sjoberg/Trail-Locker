@@ -23,8 +23,18 @@
     <div class="display-field">
         @Html.DisplayFor(model => model.destination)
     </div>
+
+    <div class="display-label">weather</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.weather)
+    </div>
+
+    <div class="display-label">description</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.description)
+    </div>
 </fieldset>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.ID }) |
+    @Html.ActionLink("Edit", "Edit", new { id=Model.TripID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

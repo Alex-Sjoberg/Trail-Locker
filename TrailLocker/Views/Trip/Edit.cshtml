@@ -14,7 +14,7 @@
     <fieldset>
         <legend>Trip</legend>
 
-        @Html.HiddenFor(model => model.ID)
+        @Html.HiddenFor(model => model.TripID)
 
         <div class="editor-label">
             @Html.LabelFor(model => model.current_weight)
@@ -38,6 +38,22 @@
         <div class="editor-field">
             @Html.EditorFor(model => model.destination)
             @Html.ValidationMessageFor(model => model.destination)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.weather)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.weather)
+            @Html.ValidationMessageFor(model => model.weather)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.description)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.description)
+            @Html.ValidationMessageFor(model => model.description)
         </div>
 
         <p>

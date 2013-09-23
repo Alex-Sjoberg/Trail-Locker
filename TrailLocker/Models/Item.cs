@@ -8,8 +8,8 @@ namespace TrailLocker.Models
 {
     public class Item
     {
-        public Guid ID { get; set; }
-        //public int ID { get; set; }
+        public Guid ItemID { get; set; }
+        public Guid LockerId { get; set; }
         //stub
     }
 }

@@ -20,6 +20,12 @@
         <th>
             destination
         </th>
+        <th>
+            weather
+        </th>
+        <th>
+            description
+        </th>
         <th></th>
     </tr>
 
@@ -35,9 +41,15 @@
             @Html.DisplayFor(modelItem => item.destination)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.DisplayFor(modelItem => item.weather)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.TripID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.TripID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.TripID })
         </td>
     </tr>
 }

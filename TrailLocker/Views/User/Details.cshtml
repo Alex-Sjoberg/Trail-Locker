@@ -1,0 +1,41 @@
+﻿@model TrailLocker.Models.User
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>User</legend>
+
+    <div class="display-label">username</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.username)
+    </div>
+
+    <div class="display-label">name</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.name)
+    </div>
+
+    <div class="display-label">home</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.home)
+    </div>
+
+    <div class="display-label">maxWeight</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.maxWeight)
+    </div>
+    <div class="display-label">Trips??</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.trips.Count)
+        
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.UserID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+    @Html.ActionLink("Create a new trip!" , "Create" , "Trip" , new {userID = Model.UserID} , null)

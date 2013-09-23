@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TrailLocker.Models;
+
 
 /* Controller for the homepage/default url
  * When someone first navigates to the page, the Index() function will be run
@@ -13,6 +15,7 @@ namespace TrailLocker.Controllers
 {
     public class HomeController : Controller
     {
+        TrailLockerEntities mainDB = new TrailLockerEntities();
         //
         // GET: /Home/
 
