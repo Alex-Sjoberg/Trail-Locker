@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace COS340.TrailLocker.Data
+namespace TrailLocker.Repository
 {
     public interface IUnitOfWork : IDisposable
     {
