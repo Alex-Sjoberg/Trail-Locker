@@ -10,7 +10,7 @@ using System.Data.Entity;
 
 namespace TrailLocker.Repository
 {
-    public class DbUnitOfWork : IUnitOfWork
+    public class DBUnitOfWork : IUnitOfWork
     {
         protected TrailLockerEntities Database = new TrailLockerEntities();
 
@@ -43,7 +43,7 @@ namespace TrailLocker.Repository
 
             return table.AsQueryable();
         }
-
+            
         public bool Remove<T>(T item) where T : class
         {
             var table = GetDatabaseTable<T>();
@@ -54,8 +54,8 @@ namespace TrailLocker.Repository
 
         protected ICollection<T> GetDatabaseTable<T>() where T : class
         {
-            // Get the name of the type
-           DbSet table = Database.Set(typeof(T));
+            List<T> table = Database.Set<T>().ToList();
+
            return table as ICollection<T>;
             
             /*

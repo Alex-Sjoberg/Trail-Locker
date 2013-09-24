@@ -12,8 +12,8 @@ namespace TrailLocker.Controllers
 { 
     public class TripController : Controller
     {
-        private Repository<Trip> TripDB = new Repository<Trip>(new InMemoryUnitOfWork());
-        private Repository<User> UserDB = new Repository<User>(new InMemoryUnitOfWork());
+        private Repository<Trip> TripDB = new Repository<Trip>(new DBUnitOfWork());
+        private Repository<User> UserDB = new Repository<User>(new DBUnitOfWork());
 
         //
         // GET: /Trip/
@@ -29,6 +29,10 @@ namespace TrailLocker.Controllers
         public ViewResult Details(Guid id)
         {
             Trip trip = TripDB.FindBy(x=> x.TripID == id) as Trip;
+            if (trip == null)
+            {
+                throw new Exception("Null???");
+            }
             return View(trip);
         }
 
@@ -49,9 +53,9 @@ namespace TrailLocker.Controllers
         {
             if (ModelState.IsValid)
             {
-                User trip_leader = UserDB.FindBy(x => x.UserID ==userID) as User;
-                trip.TripID = Guid.NewGuid();
-                trip_leader.trips.Add(trip);
+                //User trip_leader = UserDB.FindBy(x => x.UserID ==userID) as User;
+                //trip.TripID = Guid.NewGuid();
+                //trip_leader.trips.Add(trip);
                 TripDB.Add(trip);
                 TripDB.Commit();
                 return RedirectToAction("Index");  
