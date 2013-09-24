@@ -13,6 +13,7 @@ namespace TrailLocker.Models
         //public int ID { get; set; }
 
         public String username { get;  set; }
+        public String password { get; set; }
         public String name { get; set; }
         public String home { get; set; }
         public int maxWeight { get; set; }
