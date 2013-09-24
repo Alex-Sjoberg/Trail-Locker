@@ -28,12 +28,18 @@ namespace TrailLocker.Controllers
 
         public ViewResult Details(Guid id)
         {
-            Trip trip = TripDB.FindBy(x=> x.TripID == id) as Trip;
+            IQueryable trip = TripDB.FindBy(x => x.TripID == id);
             if (trip == null)
             {
                 throw new Exception("Null???");
             }
-            return View(trip);
+            List<Trip> trip_list = trip as List<Trip>;
+            if (trip_list == null)
+            {
+                throw new Exception("List Null???");
+            }
+
+            return View(trip_list);
         }
 
         //
