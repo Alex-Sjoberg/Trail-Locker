@@ -6,19 +6,20 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TrailLocker.Models;
+using TrailLocker.Repository;
 
 namespace TrailLocker.Controllers
 { 
     public class UserController : Controller
     {
-        private TrailLockerEntities db = new TrailLockerEntities();
+        private Repository<User> UserDB = new Repository<User>(new DBUnitOfWork());
 
         //
         // GET: /User/
 
         public ViewResult Index()
         {
-            return View(db.Users.ToList());
+            return View(UserDB.FindAll().ToList());
         }
 
         //
@@ -26,7 +27,7 @@ namespace TrailLocker.Controllers
 
         public ViewResult Details(Guid id)
         {
-            User user = db.Users.Find(id);
+            User user = UserDB.FindBy(x => x.UserID == id).Single();
             return View(user);
         }
 
@@ -47,9 +48,9 @@ namespace TrailLocker.Controllers
             if (ModelState.IsValid)
             {
                 user.UserID = Guid.NewGuid();
-                db.Users.Add(user);
-                db.SaveChanges();
-                return RedirectToAction("Index");  
+                UserDB.Add(user);
+                UserDB.Commit();
+                return RedirectToAction("Index");
             }
 
             return View(user);
@@ -60,7 +61,7 @@ namespace TrailLocker.Controllers
  
         public ActionResult Edit(Guid id)
         {
-            User user = db.Users.Find(id);
+            User user = UserDB.FindBy(x => x.UserID == id).Single();
             return View(user);
         }
 
@@ -72,8 +73,9 @@ namespace TrailLocker.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(user).State = EntityState.Modified;
-                db.SaveChanges();
+                //TODO repository has no edit...??
+               // UserDB.Entry(user).State = EntityState.Modified;
+                UserDB.Commit();
                 return RedirectToAction("Index");
             }
             return View(user);
@@ -84,7 +86,7 @@ namespace TrailLocker.Controllers
  
         public ActionResult Delete(Guid id)
         {
-            User user = db.Users.Find(id);
+            User user = UserDB.FindBy(x => x.UserID == id).Single();
             return View(user);
         }
 
@@ -93,16 +95,16 @@ namespace TrailLocker.Controllers
 
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(Guid id)
-        {            
-            User user = db.Users.Find(id);
-            db.Users.Remove(user);
-            db.SaveChanges();
+        {
+            User user = UserDB.FindBy(x => x.UserID == id).Single();
+            UserDB.Remove(user);
+            UserDB.Commit();
             return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
         {
-            db.Dispose();
+            UserDB.Dispose();
             base.Dispose(disposing);
         }
     }
