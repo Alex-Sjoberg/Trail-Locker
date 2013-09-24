@@ -52,7 +52,7 @@ namespace TrailLocker.Controllers
             if (ModelState.IsValid)
             {
                 User trip_leader = UserDB.FindBy(x => x.UserID ==userID).Single();
-                //huh??? How is the trip getting the user id right now???
+                //huh??? How is the trip getting the user id right now??? probably from form
 
                 trip.TripID = Guid.NewGuid();
                 TripDB.Add(trip);
