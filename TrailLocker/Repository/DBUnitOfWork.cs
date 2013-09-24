@@ -11,8 +11,12 @@ using System.Data.Entity;
 namespace TrailLocker.Repository
 {
     public class DBUnitOfWork : IUnitOfWork
-    {
+    {   
         protected TrailLockerEntities Database = new TrailLockerEntities();
+
+        public DBUnitOfWork()
+        {
+        }
 
         public void Dispose()
         {
@@ -27,7 +31,9 @@ namespace TrailLocker.Repository
 
         public void Attach<T>(T obj, bool setToChanged = false) where T : class
         {
-            Add(obj);
+            var table = GetDatabaseTable<T>();
+            Database.Entry(obj).State = System.Data.EntityState.Modified;
+            Commit();
         }
 
         public void Add<T>(T obj) where T : class

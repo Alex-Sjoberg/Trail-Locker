@@ -15,6 +15,7 @@ namespace TrailLocker.Controllers
         private Repository<Trip> TripDB = new Repository<Trip>(new DBUnitOfWork());
         private Repository<User> UserDB = new Repository<User>(new DBUnitOfWork());
 
+
         //
         // GET: /Trip/
 
@@ -50,12 +51,15 @@ namespace TrailLocker.Controllers
         {
             if (ModelState.IsValid)
             {
-                //User trip_leader = UserDB.FindBy(x => x.UserID ==userID) as User;
-                //trip.TripID = Guid.NewGuid();
-                //trip_leader.trips.Add(trip);
-                TripDB.Add(trip);
+                User trip_leader = UserDB.FindBy(x => x.UserID ==userID).Single();
+                trip.TripID = Guid.NewGuid();
+                //trip.trip_leader = trip_leader;
+                //trip.UserID = trip_leader.UserID;
+                trip_leader.trips.Add(trip);
+                UserDB.Attach(trip_leader);
+                TripDB.Attach(trip);
                 TripDB.Commit();
-                return RedirectToAction("Index");  
+                return RedirectToAction("Index");
             }
 
             return View(trip);
@@ -78,8 +82,8 @@ namespace TrailLocker.Controllers
         {
             if (ModelState.IsValid)
             {
-                //TODO repository has no edit...?
-               // db.Entry(trip).State = EntityState.Modified;
+
+                TripDB.Attach(trip);
                 TripDB.Commit();
                 return RedirectToAction("Index");
             }

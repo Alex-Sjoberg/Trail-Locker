@@ -73,8 +73,7 @@ namespace TrailLocker.Controllers
         {
             if (ModelState.IsValid)
             {
-                //TODO repository has no edit...??
-               // UserDB.Entry(user).State = EntityState.Modified;
+                UserDB.Attach(user);
                 UserDB.Commit();
                 return RedirectToAction("Index");
             }
