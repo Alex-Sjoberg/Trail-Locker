@@ -110,9 +110,7 @@ namespace TrailLocker.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(Guid id)
         {            
-            //TODO Casting the result of this function to a trip
-            //      It should only ever return one, but is this bad somehow?
-            //      Do it in multiple functions here
+
             Trip trip = TripDB.FindBy(x => x.TripID == id).Single();
             TripDB.Remove(trip);
             TripDB.Commit();

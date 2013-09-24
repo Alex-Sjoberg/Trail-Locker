@@ -18,7 +18,7 @@ namespace TrailLocker.Models
         public virtual List<User> friends { get; set; }
 
         public Locker locker;
-        public  ICollection<Trip> trips;
+        public  ICollection<Trip> trips {get; set;}
 
         public User(String name, int maxWeight)
         {
