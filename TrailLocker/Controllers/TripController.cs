@@ -12,10 +12,16 @@ namespace TrailLocker.Controllers
 { 
     public class TripController : Controller
     {
-        private Repository<Trip> TripDB = new Repository<Trip>(new DBUnitOfWork());
-        private Repository<User> UserDB = new Repository<User>(new DBUnitOfWork());
+         DBUnitOfWork unitOfWork = new DBUnitOfWork();
 
+         private Repository<Trip> TripDB;
+         private Repository<User> UserDB;
 
+        public TripController()
+        {
+            TripDB  = new Repository<Trip>(unitOfWork);
+            UserDB = new Repository<User>(unitOfWork);
+        }
         //
         // GET: /Trip/
 
@@ -52,17 +58,19 @@ namespace TrailLocker.Controllers
             if (ModelState.IsValid)
             {
                 User trip_leader = UserDB.FindBy(x => x.UserID ==userID).Single();
-                //huh??? How is the trip getting the user id right now??? probably from form
 
                 trip.TripID = Guid.NewGuid();
                 TripDB.Add(trip);
 
-                //trip.trip_leader = trip_leader;
-                //trip.UserID = trip_leader.UserID;
-                //trip_leader.trips.Add(trip);
-                //UserDB.Attach(trip_leader);
+                trip_leader.username = "Blake";
+                trip.trip_leader = trip_leader;
+                trip_leader.trips.Add(trip);
+                trip_leader.myTrip = trip;
+                trip_leader.TripID = trip.TripID;
+                UserDB.Attach(trip_leader);
                 //TripDB.Attach(trip);
-                
+
+                UserDB.Commit();
                 TripDB.Commit();
                 return RedirectToAction("Index");
             }

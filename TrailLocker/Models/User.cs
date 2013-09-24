@@ -8,6 +8,8 @@ namespace TrailLocker.Models
     public class User
     {
         public Guid UserID { get; set; } //for testing DB stuff
+        public Guid TripID { get; set; }
+        public Trip myTrip { get; set; }
         //public int ID { get; set; }
 
         public String username { get;  set; }

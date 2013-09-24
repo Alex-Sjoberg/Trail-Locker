@@ -12,10 +12,12 @@ namespace TrailLocker.Repository
 {
     public class DBUnitOfWork : IUnitOfWork
     {   
-        protected TrailLockerEntities Database = new TrailLockerEntities();
+   
+        protected TrailLockerEntities Database;
 
         public DBUnitOfWork()
         {
+            Database = new TrailLockerEntities();
         }
 
         public void Dispose()
