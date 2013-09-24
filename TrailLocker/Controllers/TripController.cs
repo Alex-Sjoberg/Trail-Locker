@@ -28,19 +28,9 @@ namespace TrailLocker.Controllers
 
         public ViewResult Details(Guid id)
         {
-            IQueryable<Trip> trips = TripDB.FindBy(x => x.TripID == id);
-            if (trips == null)
-            {
-                throw new Exception("Null???");
-            }
+            Trip trip = TripDB.FindBy(x => x.TripID == id).Single();
 
-            Trip trip_item = trips.Single();
-            if (trip_item == null)
-            {
-                throw new Exception("List Null???");
-            }
-
-            return View(trip_item);
+            return View(trip);
         }
 
         //
@@ -76,7 +66,7 @@ namespace TrailLocker.Controllers
  
         public ActionResult Edit(Guid id)
         {
-            Trip trip = TripDB.FindBy( x=> x.TripID == id) as Trip;
+            Trip trip = TripDB.FindBy(x => x.TripID == id).Single();
             return View(trip);
         }
 
@@ -101,7 +91,7 @@ namespace TrailLocker.Controllers
  
         public ActionResult Delete(Guid id)
         {
-            Trip trip = TripDB.FindBy(x => x.TripID == id) as Trip;
+            Trip trip = TripDB.FindBy(x => x.TripID == id).Single();
             return View(trip);
         }
 
@@ -114,7 +104,7 @@ namespace TrailLocker.Controllers
             //TODO Casting the result of this function to a trip
             //      It should only ever return one, but is this bad somehow?
             //      Do it in multiple functions here
-            Trip trip = TripDB.FindBy(x => x.TripID == id) as Trip;
+            Trip trip = TripDB.FindBy(x => x.TripID == id).Single();
             TripDB.Remove(trip);
             TripDB.Commit();
             return RedirectToAction("Index");

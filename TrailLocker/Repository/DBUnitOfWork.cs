@@ -48,15 +48,23 @@ namespace TrailLocker.Repository
         {
             var table = GetDatabaseTable<T>();
 
-            return table.Remove(item);
+            if (table.Remove(item) != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+         
         }
 
 
-        protected ICollection<T> GetDatabaseTable<T>() where T : class
+        protected DbSet<T> GetDatabaseTable<T>() where T : class
         {
-            List<T> table = Database.Set<T>().ToList();
+            DbSet<T> table = Database.Set<T>();
 
-           return table as ICollection<T>;
+           return table;
             
             /*
             if (!Database.Any(x => x.Key == key))
