@@ -9,7 +9,7 @@ using TrailLocker.Models;
 using TrailLocker.Repository;
 
 namespace TrailLocker.Controllers
-{ 
+{
     public class UserController : Controller
     {
         private Repository<User> UserDB = new Repository<User>(new DBUnitOfWork());

@@ -22,9 +22,12 @@ namespace TrailLocker.Models
         public Locker locker;
         public  ICollection<Trip> trips {get; set;}
 
-        public User(String name, int maxWeight)
+        public User(String username, String password, String name, String home, int maxWeight)
         {
+            this.username = username;
+            this.password = password;
             this.name = name;
+            this.home = home;
             this.maxWeight = maxWeight;
         }
 
@@ -33,6 +36,7 @@ namespace TrailLocker.Models
             this.name = "Unknown";
             this.maxWeight = 0;
             this.trips = new List<Trip>();
+			this.friends = new List<User>();
         }
     }
 }

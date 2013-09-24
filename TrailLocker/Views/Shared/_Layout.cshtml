@@ -7,8 +7,29 @@
 </head>
 
 <body>
-    @Html.ActionLink("HOME" , "Index" , "Home")
-    @Html.ActionLink("HOME" , "Detail" , "Locker")
-    @RenderBody()
+    <div class="page">
+        <div id="header">
+            <div id="title">
+                <h1>Trail Locker</h1>
+            </div>
+            <div id="logindisplay">
+            </div>
+            <div id="menu">
+                <ul id="navBar">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Locker", "Index", "Locker")</li>
+                    <li>@Html.ActionLink("Trips", "Index", "Trips")</li>
+                    <li>@Html.ActionLink("User", "Index", "User")</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="main">
+            @RenderBody()
+        </div>
+
+        <div id="footer">
+        </div>
+    </div>
 </body>
 </html>

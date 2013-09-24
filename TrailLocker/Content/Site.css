@@ -1,9 +1,11 @@
 body
 {
+    margin: auto;
+    width: 40%;
     font-size: .85em;
     font-family: "Trebuchet MS", Verdana, Helvetica, Sans-Serif;
     color: #232323;
-    background-color: #fff;
+    background-color: #ADD6AD;
 }
 
 header,
@@ -11,6 +13,28 @@ footer,
 nav,
 section {
     display: block;
+}
+
+#navBar {
+    display: inline;
+    list-style-type: none;
+    /*padding-right: 20px;*/
+}
+#navBar li 
+{
+    display: inline;
+}
+#navBar li a 
+{
+    text-decoration: none;
+    padding: .2em 1em;
+    color: #F0EBE6;
+    background-color: #8F4700;
+}
+#navBar li a:hover
+{
+    color: #F0EBE6;
+    background-color: #9A5919;
 }
 
 /* Styles for basic forms
