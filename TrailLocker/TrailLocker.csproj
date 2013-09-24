@@ -77,6 +77,11 @@
     <Compile Include="Models\Trip.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\DBUnitOfWork.cs" />
+    <Compile Include="Repository\InMemoryUnitOfWork.cs" />
+    <Compile Include="Repository\IRepository.cs" />
+    <Compile Include="Repository\IUnitOfWork.cs" />
+    <Compile Include="Repository\Repository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />

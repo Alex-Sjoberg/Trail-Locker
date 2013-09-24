@@ -6,19 +6,21 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TrailLocker.Models;
+using TrailLocker.Repository;
 
 namespace TrailLocker.Controllers
 { 
     public class TripController : Controller
     {
-        private TrailLockerEntities db = new TrailLockerEntities();
+        private Repository<Trip> TripDB = new Repository<Trip>(new InMemoryUnitOfWork());
+        private Repository<User> UserDB = new Repository<User>(new InMemoryUnitOfWork());
 
         //
         // GET: /Trip/
 
         public ViewResult Index()
         {
-            return View(db.Trips.ToList());
+            return View(TripDB.FindAll().ToList());
         }
 
         //
@@ -26,7 +28,7 @@ namespace TrailLocker.Controllers
 
         public ViewResult Details(Guid id)
         {
-            Trip trip = db.Trips.Find(id);
+            Trip trip = TripDB.FindBy(x=> x.TripID == id) as Trip;
             return View(trip);
         }
 
@@ -47,11 +49,11 @@ namespace TrailLocker.Controllers
         {
             if (ModelState.IsValid)
             {
-                User trip_leader = db.Users.Find(userID);
+                User trip_leader = UserDB.FindBy(x => x.UserID ==userID) as User;
                 trip.TripID = Guid.NewGuid();
                 trip_leader.trips.Add(trip);
-                db.Trips.Add(trip);
-                db.SaveChanges();
+                TripDB.Add(trip);
+                TripDB.Commit();
                 return RedirectToAction("Index");  
             }
 
@@ -63,7 +65,7 @@ namespace TrailLocker.Controllers
  
         public ActionResult Edit(Guid id)
         {
-            Trip trip = db.Trips.Find(id);
+            Trip trip = TripDB.FindBy( x=> x.TripID == id) as Trip;
             return View(trip);
         }
 
@@ -75,8 +77,9 @@ namespace TrailLocker.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(trip).State = EntityState.Modified;
-                db.SaveChanges();
+                //TODO repository has no edit...?
+               // db.Entry(trip).State = EntityState.Modified;
+                TripDB.Commit();
                 return RedirectToAction("Index");
             }
             return View(trip);
@@ -87,7 +90,7 @@ namespace TrailLocker.Controllers
  
         public ActionResult Delete(Guid id)
         {
-            Trip trip = db.Trips.Find(id);
+            Trip trip = TripDB.FindBy(x => x.TripID == id) as Trip;
             return View(trip);
         }
 
@@ -97,15 +100,18 @@ namespace TrailLocker.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(Guid id)
         {            
-            Trip trip = db.Trips.Find(id);
-            db.Trips.Remove(trip);
-            db.SaveChanges();
+            //TODO Casting the result of this function to a trip
+            //      It should only ever return one, but is this bad somehow?
+            //      Do it in multiple functions here
+            Trip trip = TripDB.FindBy(x => x.TripID == id) as Trip;
+            TripDB.Remove(trip);
+            TripDB.Commit();
             return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
         {
-            db.Dispose();
+            TripDB.Dispose();
             base.Dispose(disposing);
         }
     }
