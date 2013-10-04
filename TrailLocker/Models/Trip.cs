@@ -18,7 +18,6 @@ namespace TrailLocker.Models
         public String destination { get; set; }
 
         public virtual User trip_leader { get; set; }
-
         public virtual ICollection<User> travellers { get; private set; }
 
         public virtual ICollection<Item> items { get; private set; }
@@ -39,7 +38,7 @@ namespace TrailLocker.Models
         }
 
         //Methods
-        public int add_item(Item new_item)
+        public int add_item(Locker new_item)
         {
             return 1;
         }

@@ -7,10 +7,8 @@ namespace TrailLocker.Models
 {
     public class User
     {
-        public Guid UserID { get; set; } //for testing DB stuff
-        public Guid TripID { get; set; }
-        public Trip myTrip { get; set; }
-        //public int ID { get; set; }
+        public Guid UserID { get; set; } //primary key in DB
+        public Guid TripID { get; set; } //foriegn key. TODO remove
 
         public String username { get;  set; }
         public String password { get; set; }
@@ -18,9 +16,9 @@ namespace TrailLocker.Models
         public String home { get; set; }
         public int maxWeight { get; set; }
 
-        public virtual List<User> friends { get; set; }
+        public virtual ICollection<User> friends { get; set; }
 
-        public Locker locker;
+        public  Locker locker; //why can't I put virtual??? Do I need to?
         public  virtual ICollection<Trip> trips {get; set;}
 
         public User(String username, String password, String name, String home, int maxWeight)
