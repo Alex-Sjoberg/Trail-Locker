@@ -61,6 +61,7 @@ namespace TrailLocker.Controllers
 
                 trip.TripID = Guid.NewGuid();
                 TripDB.Add(trip);
+                //TripDB.Attach(trip);
 
                 trip_leader.username = "Blake";
                 trip.trip_leader = trip_leader;
@@ -68,7 +69,7 @@ namespace TrailLocker.Controllers
                 trip_leader.myTrip = trip;
                 trip_leader.TripID = trip.TripID;
                 UserDB.Attach(trip_leader);
-                //TripDB.Attach(trip);
+
 
                 UserDB.Commit();
                 TripDB.Commit();
