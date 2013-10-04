@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using System.Data.Entity;
+using TrailLocker.Models;
 
 namespace TrailLocker
 {
@@ -35,6 +37,9 @@ namespace TrailLocker
 
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
+
+            DropCreateDatabaseIfModelChanges<TrailLockerEntities> refresher = new DropCreateDatabaseIfModelChanges<TrailLockerEntities>();
+            Database.SetInitializer<TrailLockerEntities>(refresher);
         }
     }
 }

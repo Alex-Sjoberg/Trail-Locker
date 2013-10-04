@@ -1,0 +1,18 @@
+﻿@model TrailLocker.Controllers.LoginModel
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Index</h2>
+<script src="@Url.Content("~/Scripts/jquery.validate.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")" type="text/javascript"></script>
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(m => m.username);
+    @Html.TextBoxFor(m => m.username);
+    @Html.LabelFor(m => m.password);
+    @Html.PasswordFor(m => m.password);
+        <input input type="submit" />
+    @Html.ValidationSummary();
+}
