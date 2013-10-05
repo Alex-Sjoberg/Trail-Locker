@@ -37,7 +37,7 @@ namespace TrailLocker
 
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
-
+            
             DropCreateDatabaseIfModelChanges<TrailLockerEntities> refresher = new DropCreateDatabaseIfModelChanges<TrailLockerEntities>();
             Database.SetInitializer<TrailLockerEntities>(refresher);
         }

@@ -8,8 +8,12 @@ namespace TrailLocker.Models
     public class Locker
     {
         public Guid LockerID { get; set; }
-        public virtual List<Item> MyItems { get; set; }
-        public Guid UserID { get; set; }
+
+        public virtual Guid UserID { get; set; }
+        public virtual User owner { get; set; }
+
+        public virtual ICollection<Item> items { get; set; }
+
         //stub
     }
 }

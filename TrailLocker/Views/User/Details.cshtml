@@ -28,10 +28,15 @@
     <div class="display-field">
         @Html.DisplayFor(model => model.maxWeight)
     </div>
+
     <div class="display-label">Trips??</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.trips.Count)
-        
+    </div>
+
+    <div class="display-label">TripsID</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TripID)
     </div>
 </fieldset>
 <p>

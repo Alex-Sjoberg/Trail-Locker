@@ -1,5 +1,7 @@
 body
 {
+    margin: auto;
+    width: 40%;
     font-size: .85em;
     font-family: "Trebuchet MS", Verdana, Helvetica, Sans-Serif;
     color: #232323;
