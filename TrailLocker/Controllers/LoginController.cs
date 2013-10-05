@@ -35,15 +35,17 @@ namespace TrailLocker.Controllers
         {
             if (ModelState.IsValid)
             {
-                //if (model.Username == "jed" && model.Password == "albao") // Simulate data store call where Username/Password
                 try 
                 {
-                    User user = UserDB.FindBy(x => x.username == model.username && x.password == model.password).Single();
+                    // Query the DB for a user with the right username and password. The '.single()' is necessary to get out a single user object, since 'FindBy()' returns
+                    // a collection. If it didn't find anything, it will throw an InvalidOperationException.
+                    User user = UserDB.FindBy(x => x.username == model.username && x.password == model.password).Single(); 
                     FormsAuthentication.SetAuthCookie(model.username, true);
                     return RedirectToAction("index", "home");
 
                 } catch (InvalidOperationException e){
                     ModelState.AddModelError("", "Invalid username or password");
+                
                 }
             }
 
