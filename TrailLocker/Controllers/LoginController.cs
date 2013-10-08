@@ -16,7 +16,6 @@ namespace TrailLocker.Controllers
 
          DBUnitOfWork unitOfWork = new DBUnitOfWork();
 
-         private Repository<Trip> TripDB;
          private Repository<User> UserDB;
 
         public LoginController()
@@ -29,7 +28,8 @@ namespace TrailLocker.Controllers
         }
 
 
-
+        //
+        // POST: /Login/
         [HttpPost]
         public ActionResult Index(LoginModel model)
         {
@@ -41,6 +41,10 @@ namespace TrailLocker.Controllers
                     // a collection. If it didn't find anything, it will throw an InvalidOperationException.
                     User user = UserDB.FindBy(x => x.username == model.username && x.password == model.password).Single(); 
                     FormsAuthentication.SetAuthCookie(model.username, true);
+
+                    // extract username from cookie
+                    string username = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).Name;
+
                     return RedirectToAction("index", "home");
 
                 } catch (InvalidOperationException e){
@@ -51,26 +55,30 @@ namespace TrailLocker.Controllers
 
             return View();
         }
-    }
-}
 
-/*
+        //
+        // GET: Login/CreateAccount/
+        public ActionResult CreateAccount()
+        {
+            return View();
+        }
+
+        //
+        // POST: Login/CreateAccount/
         [HttpPost]
-        public ActionResult Index(LoginModel model)
+        public ActionResult CreateAccount(User user)
         {
             if (ModelState.IsValid)
             {
-                //if (model.Username == "jed" && model.Password == "albao") // Simulate data store call where Username/Password
-                if (DataAccess.DAL.UserIsValid(model.username, model.password))
-                {
-                    FormsAuthentication.SetAuthCookie(model.username, true);
-                    return RedirectToAction("index", "home");
-                }
-                {
-                    ModelState.AddModelError("", "Invalid username or password");
-                }
+                user.UserID = Guid.NewGuid();
+                UserDB.Add(user);
+                UserDB.Commit();
+
+                FormsAuthentication.SetAuthCookie(user.username, true);
+                return RedirectToAction("Index", "Home");
             }
 
-            return View();
+            return View(user);
         }
-*/
+    }
+}

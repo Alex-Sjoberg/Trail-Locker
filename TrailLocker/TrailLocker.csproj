@@ -182,7 +182,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\User\Index.cshtml" />
-    <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\User\Details.cshtml" />
@@ -194,11 +193,7 @@
     <None Include="obj\Debug\TrailLocker.csprojResolveAssemblyReference.cache" />
     <Content Include="Views\User\Create.cshtml" />
     <Content Include="Views\User\Delete.cshtml" />
-    <Content Include="Views\User\Details.cshtml">
-      <SubType>Code</SubType>
-    </Content>
     <Content Include="Views\User\Edit.cshtml" />
-    <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Item\Index.cshtml" />
     <Content Include="Views\Item\Details.cshtml" />
     <Content Include="Views\Item\Create.cshtml" />
@@ -209,8 +204,11 @@
     <Content Include="Views\Locker\Create.cshtml" />
     <Content Include="Views\Locker\Edit.cshtml" />
     <Content Include="Views\Locker\Delete.cshtml" />
+    <Content Include="Views\Login\CreateAccount.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="obj\Debug\TempPE\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\logout\Index.cshtml" />

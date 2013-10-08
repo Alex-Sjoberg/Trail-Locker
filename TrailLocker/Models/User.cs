@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
 
 namespace TrailLocker.Models
 {
@@ -10,8 +11,9 @@ namespace TrailLocker.Models
         public Guid UserID { get; set; } //primary key in DB
         public Guid TripID { get; set; } //foriegn key. TODO remove
 
-        //public String username { get;  set; }
-        //public String password { get; set; }
+        [Required]
+        public String email { get; set; }
+
         public String name { get; set; }
         public String home { get; set; }
         public int maxWeight { get; set; }
