@@ -37,10 +37,12 @@ namespace TrailLocker.Controllers
             {
                 try 
                 {
-                    // Query the DB for a user with the right username and password. The '.single()' is necessary to get out a single user object, since 'FindBy()' returns
-                    // a collection. If it didn't find anything, it will throw an InvalidOperationException.
+                    //Query the DB for a user with the right username and password. The '.single()' is necessary to get out a single user object, since FindBy()'
                     User user = UserDB.FindBy(x => x.username == model.username && x.password == model.password).Single(); 
                     FormsAuthentication.SetAuthCookie(model.username, true);
+                    
+                    HttpCookie cookie = Request.Cookies[".ASPXAUTH"];
+                    int xes = 1;
                     return RedirectToAction("index", "home");
 
                 } catch (InvalidOperationException e){

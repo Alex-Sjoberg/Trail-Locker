@@ -10,7 +10,7 @@ using TrailLocker.Repository;
 
 namespace TrailLocker.Controllers
 { 
-    public class ItemController : Controller
+    public class ItemController : SuperController
     {
 
          DBUnitOfWork unitOfWork = new DBUnitOfWork();

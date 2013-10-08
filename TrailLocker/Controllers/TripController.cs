@@ -10,17 +10,12 @@ using TrailLocker.Repository;
 
 namespace TrailLocker.Controllers
 { 
-    public class TripController : Controller
+    public class TripController : SuperController
     {
-         DBUnitOfWork unitOfWork = new DBUnitOfWork();
-
-         private Repository<Trip> TripDB;
-         private Repository<User> UserDB;
 
         public TripController()
         {
-            TripDB  = new Repository<Trip>(unitOfWork);
-            UserDB = new Repository<User>(unitOfWork);
+
         }
         //
         // GET: /Trip/

@@ -67,6 +67,7 @@
     <Compile Include="Controllers\logoutController.cs" />
     <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Controllers\LockerController.cs" />
+    <Compile Include="Controllers\SuperController.cs" />
     <Compile Include="Controllers\TripController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DataAccess\DAL.cs" />
