@@ -65,20 +65,29 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\logoutController.cs" />
+    <Compile Include="Controllers\ItemController.cs" />
+    <Compile Include="Controllers\LockerController.cs" />
     <Compile Include="Controllers\TripController.cs" />
-    <Compile Include="Controllers\TripOldController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DataAccess\DAL.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\LoginModel.cs" />
-    <Compile Include="Models\TrailLockerEntities.cs" />
-    <Compile Include="Models\Item.cs" />
+    <Compile Include="Models\Items\Food.cs" />
+    <Compile Include="Models\Items\Hammock.cs" />
+    <Compile Include="Models\Items\Item.cs" />
+    <Compile Include="Models\Items\Shoes.cs" />
+    <Compile Include="Models\Items\Sleepingbag.cs" />
+    <Compile Include="Models\Items\SleepingSystem.cs" />
+    <Compile Include="Models\Items\Tent.cs" />
+    <Compile Include="Models\Items\Tools.cs" />
     <Compile Include="Models\Locker.cs" />
+    <Compile Include="Models\TrailLockerEntities.cs" />
     <Compile Include="Models\Trip.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\DBUnitOfWork.cs" />
     <Compile Include="Repository\InMemoryUnitOfWork.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\IUnitOfWork.cs" />
@@ -119,6 +128,9 @@
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="obj\Debug\TrailLocker.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\TrailLocker.dll" />
+    <Content Include="obj\Debug\TrailLocker.pdb" />
     <Content Include="Scripts\jquery-1.5.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.5.1.js" />
     <Content Include="Scripts\jquery-1.5.1.min.js" />
@@ -154,7 +166,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\TripOld\Index.cshtml" />
+    <Content Include="Views\Trip\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -170,34 +182,35 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\User\Index.cshtml" />
+    <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\User\Details.cshtml" />
+    <Content Include="Views\Trip\NewTrip.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Debug\TrailLocker.csprojResolveAssemblyReference.cache" />
     <Content Include="Views\User\Create.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\User\Edit.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\User\Delete.cshtml" />
+    <Content Include="Views\User\Details.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\Item\Index.cshtml" />
+    <Content Include="Views\Item\Details.cshtml" />
+    <Content Include="Views\Item\Create.cshtml" />
+    <Content Include="Views\Item\Edit.cshtml" />
+    <Content Include="Views\Item\Delete.cshtml" />
+    <Content Include="Views\Locker\Index.cshtml" />
+    <Content Include="Views\Locker\Details.cshtml" />
+    <Content Include="Views\Locker\Create.cshtml" />
+    <Content Include="Views\Locker\Edit.cshtml" />
+    <Content Include="Views\Locker\Delete.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Trip\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Trip\Details.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Trip\Create.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Trip\Edit.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Trip\Delete.cshtml" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\logout\Index.cshtml" />

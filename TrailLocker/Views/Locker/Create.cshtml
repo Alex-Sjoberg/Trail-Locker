@@ -1,4 +1,4 @@
-﻿@model TrailLocker.Models.Trip
+﻿@model TrailLocker.Models.Locker
 
 @{
     ViewBag.Title = "Create";
@@ -12,7 +12,15 @@
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
     <fieldset>
-        <legend>Trip</legend>
+        <legend>Locker</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.UserID)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.UserID)
+            @Html.ValidationMessageFor(model => model.UserID)
+        </div>
 
         <p>
             <input type="submit" value="Create" />

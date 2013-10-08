@@ -10,15 +10,14 @@ namespace TrailLocker.Models
     {
         //Instance Variables
         public Guid TripID { get; set; }
-        public Guid UserID { get; set; }
+        public Guid UserID { get; set; } //GUID of trip leader
 
         public float current_weight { get; set; }
         public float total_capacity { get;  set; }
 
         public String destination { get; set; }
 
-        //public virtual User trip_leader { get; set; } //Not necessary? Trip leader will be UserID basically?
-
+        public virtual User trip_leader { get; set; }
         public virtual ICollection<User> travellers { get; private set; }
 
         public virtual ICollection<Item> items { get; private set; }
@@ -39,7 +38,7 @@ namespace TrailLocker.Models
         }
 
         //Methods
-        public int add_item(Item new_item)
+        public int add_item(Locker new_item)
         {
             return 1;
         }
