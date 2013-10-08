@@ -9,18 +9,15 @@ using TrailLocker.Models;
 
 namespace TrailLocker.Controllers
 {
-    public class LoginController : Controller
+    public class LoginController : SuperController
     {
         //
         // GET: /Login/
 
-         DBUnitOfWork unitOfWork = new DBUnitOfWork();
-
-         private Repository<User> UserDB;
 
         public LoginController()
         {
-            UserDB = new Repository<User>(unitOfWork);
+
         }
         public ActionResult Index()
         {

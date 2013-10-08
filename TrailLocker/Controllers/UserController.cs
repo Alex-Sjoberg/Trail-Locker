@@ -10,9 +10,8 @@ using TrailLocker.Repository;
 
 namespace TrailLocker.Controllers
 {
-    public class UserController : Controller
+    public class UserController : SuperController
     {
-        private Repository<User> UserDB = new Repository<User>(new DBUnitOfWork());
 
         //
         // GET: /User/
