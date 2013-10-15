@@ -30,11 +30,18 @@ namespace TrailLocker.Models
         public String description { get; set; }
         
         //Constructor
+        public Trip(Guid userID)
+        {
+            this.UserID = userID;
+            this.TripID = Guid.NewGuid();
+            this.current_weight = 0;
+        }
+
         public Trip()
         {
-            this.TripID = new Guid();
+            this.TripID = Guid.NewGuid();
             this.current_weight = 0;
-            this.total_capacity = 0;
+            this.destination = "TBD";
         }
 
         //Methods

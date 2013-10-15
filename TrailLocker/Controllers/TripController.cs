@@ -22,7 +22,9 @@ namespace TrailLocker.Controllers
 
         public ViewResult Index()
         {
-            return View(TripDB.FindAll().ToList());
+            User user = get_current_user();
+            ICollection<Trip> trips = user.trips;
+            return View(trips);
         }
 
         //
@@ -38,12 +40,13 @@ namespace TrailLocker.Controllers
         //
         // GET: /Trip/Create
 
+        /*
         public ActionResult Create(Guid userID)
         {
             ViewBag.userID = userID;
             return View();
         } 
-
+        */
         //
         // POST: /Trip/Create
 
@@ -56,12 +59,9 @@ namespace TrailLocker.Controllers
 
                 trip.TripID = Guid.NewGuid();
                 TripDB.Add(trip);
-                //TripDB.Attach(trip);
 
-                trip_leader.username = "Blake";
                 trip.trip_leader = trip_leader;
                 trip_leader.trips.Add(trip);
-                trip_leader.TripID = trip.TripID;
                 UserDB.Attach(trip_leader);
 
 
@@ -71,6 +71,21 @@ namespace TrailLocker.Controllers
             }
 
             return View(trip);
+        }
+
+        public ActionResult Create()
+        {
+            User trip_leader = get_current_user();
+            Trip new_trip = new Trip(trip_leader.UserID);
+
+            TripDB.Add(new_trip);
+            TripDB.Commit();
+
+            trip_leader.trips.Add(new_trip);
+            UserDB.Attach(trip_leader);
+            UserDB.Commit();
+
+            return RedirectToAction("Details", new { id = new_trip.TripID });
         }
         
         //
