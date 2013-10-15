@@ -46,6 +46,12 @@ namespace TrailLocker.Controllers
             User user =  UserDB.FindBy(x => x.username == username).Single();
             return user.UserID;
         }
+
+        public ActionResult display_username()
+        {
+            User user = get_current_user();
+            return PartialView(user);
+        }
         
 
     }

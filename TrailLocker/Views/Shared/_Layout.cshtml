@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿
+
+<!DOCTYPE html>
 <html>
 <head>
     <title>@ViewBag.Title</title>
@@ -13,13 +15,15 @@
                 <h1>Trail Locker</h1>
             </div>
             <div id="logindisplay">
+                You are logged in as @{Html.RenderAction("display_username", "Super");}
             </div>
             <div id="menu">
                 <ul id="navBar">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Locker", "Index", "Locker")</li>
-                    <li>@Html.ActionLink("Trips", "Index", "Trips")</li>
+                    <li>@Html.ActionLink("Trips", "Index", "Trip")</li>
                     <li>@Html.ActionLink("User", "Index", "User")</li>
+                    <li>@Html.ActionLink("My Account", "Account", "User")</li>
                     <li>@Html.ActionLink("Logout", "Index", "Logout")</li>
                 </ul>
             </div>

@@ -64,6 +64,12 @@ namespace TrailLocker.Controllers
             return View(user);
         }
 
+        public ActionResult Account()
+        {
+            User user = get_current_user();
+            return View(user);
+        }
+
         //
         // POST: /User/Edit/5
 
