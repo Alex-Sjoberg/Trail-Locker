@@ -39,8 +39,7 @@ namespace TrailLocker.Controllers
                     User user = UserDB.FindBy(x => x.username == model.username && x.password == model.password).Single(); 
                     FormsAuthentication.SetAuthCookie(model.username, true);
 
-                    // extract username from cookie
-                    string username = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).Name;
+                    
 
                     return RedirectToAction("index", "home");
 
