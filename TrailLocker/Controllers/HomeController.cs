@@ -13,6 +13,7 @@ using TrailLocker.Models;
 
 namespace TrailLocker.Controllers
 {
+    [Authorize]
     public class HomeController : SuperController
     {
         TrailLockerEntities mainDB = new TrailLockerEntities();

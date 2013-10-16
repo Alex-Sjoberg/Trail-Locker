@@ -5,3 +5,5 @@ C:\Users\asjoberg\Dropbox\TrailLocker\TrailLocker\bin\EntityFramework.xml
 C:\Users\asjoberg\Dropbox\TrailLocker\TrailLocker\obj\Debug\TrailLocker.csprojResolveAssemblyReference.cache
 C:\Users\asjoberg\Dropbox\TrailLocker\TrailLocker\obj\Debug\TrailLocker.dll
 C:\Users\asjoberg\Dropbox\TrailLocker\TrailLocker\obj\Debug\TrailLocker.pdb
+C:\Users\asjoberg\Dropbox\TrailLocker\TrailLocker\bin\Facebook.dll
+C:\Users\asjoberg\Dropbox\TrailLocker\TrailLocker\bin\Facebook.xml

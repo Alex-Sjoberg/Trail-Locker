@@ -9,6 +9,9 @@
 <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")" type="text/javascript"></script>
 <div id = "login">
 <p> Please log in</p>
+@Html.ActionLink("Log in with Facebook","Facebook");
+
+<!--
 @using (Html.BeginForm())
 {
     @Html.LabelFor(m => m.username);
@@ -24,3 +27,4 @@
     @Html.ActionLink("Sign Up Now.", "CreateAccount", "Login")
 </div>
 
+-->
