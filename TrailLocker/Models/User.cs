@@ -11,10 +11,9 @@ namespace TrailLocker.Models
         public Guid UserID { get; set; } //primary key in DB
         public Guid TripID { get; set; } //foriegn key. TODO remove
 
-        [Required]
-        public String email { get; set; }
+        public String first_name { get; set; }
+        public String last_name { get; set; }
 
-        public String name { get; set; }
         public String home { get; set; }
         public int maxWeight { get; set; }
 
@@ -25,16 +24,21 @@ namespace TrailLocker.Models
 
         public User(String username, String password, String name, String home, int maxWeight)
         {
-            this.username = username;
-            this.password = password;
-            this.name = name;
+            this.first_name = name;
             this.home = home;
             this.maxWeight = maxWeight;
         }
 
+        public User(String first_name, String last_name, String email)
+        {
+            this.first_name = first_name;
+            this.last_name = last_name;
+            this.email = email;
+        }
+
         public User()
         {
-            this.name = "Unknown";
+            this.first_name = "Unknown";
             this.maxWeight = 0;
             this.trips = new List<Trip>();
 			this.friends = new List<User>();

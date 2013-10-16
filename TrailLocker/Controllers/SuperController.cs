@@ -27,7 +27,7 @@ namespace TrailLocker.Controllers
         }
 
         //seems weird to put this stuff in a controller, but not sure where else to put it
-        private string get_current_username()
+        private string get_current_email()
         {
             return FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).Name;
         }
@@ -35,19 +35,19 @@ namespace TrailLocker.Controllers
         protected User get_current_user()
         {
 
-            string username = get_current_username();
-            User user = UserDB.FindBy(x => x.username == username).Single();
+            string email = get_current_email();
+            User user = UserDB.FindBy(x => x.email == email).Single();
             return user;
         }
 
         protected Guid get_current_user_id()
         {
-            string username = get_current_username();
-            User user =  UserDB.FindBy(x => x.username == username).Single();
+            string email = get_current_email();
+            User user =  UserDB.FindBy(x => x.email == email).Single();
             return user.UserID;
         }
 
-        public ActionResult display_username()
+        public ActionResult display_email()
         {
             User user = get_current_user();
             return PartialView(user);

@@ -207,7 +207,7 @@
     <Content Include="Views\Locker\Delete.cshtml" />
     <Content Include="Views\Login\CreateAccount.cshtml" />
     <Content Include="Views\User\Account.cshtml" />
-    <Content Include="Views\Super\display_username.cshtml" />
+    <Content Include="Views\Super\display_email.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="obj\Debug\TempPE\" />

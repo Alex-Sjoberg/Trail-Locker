@@ -77,36 +77,18 @@ namespace TrailLocker.Controllers
         dynamic me = fb.Get("me?fields=first_name,last_name,id,email");
         string email = me.email;
 
-        // Set the auth cookie
-        FormsAuthentication.SetAuthCookie("admin", false);
+        try{
+            User user = UserDB.FindBy(x => x.email == email).Single();
+            
+            FormsAuthentication.SetAuthCookie(email, false);
+            return RedirectToAction("Index", "Home");
 
-        return RedirectToAction("Index", "Home");
-    }
-
-        //
-        // POST: /Login/
-        [HttpPost]
-        public ActionResult Index(LoginModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                try 
-                {
-                    // Query the DB for a user with the right username and password. The '.single()' is necessary to get out a single user object, since 'FindBy()' returns
-                    // a collection. If it didn't find anything, it will throw an InvalidOperationException.
-                    User user = UserDB.FindBy(x => x.username == model.username && x.password == model.password).Single(); 
-                    FormsAuthentication.SetAuthCookie(model.username, true);
-
-                    return RedirectToAction("index", "home");
-
-                } catch (InvalidOperationException e){
-                    ModelState.AddModelError("", "Invalid username or password");
-                
-                }
-            }
-
-            return View();
+        }catch (InvalidOperationException e){
+            User new_user = new User(me.first_name,me.last_name,me.email);
+            return RedirectToAction("CreateAccount", new { user = new_user });
         }
+
+    }
 
         //
         // GET: Login/CreateAccount/
@@ -126,7 +108,7 @@ namespace TrailLocker.Controllers
                 UserDB.Add(user);
                 UserDB.Commit();
 
-                FormsAuthentication.SetAuthCookie(user.username, true);
+                FormsAuthentication.SetAuthCookie(user.email, true);
                 return RedirectToAction("Index", "Home");
             }
 
