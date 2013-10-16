@@ -37,82 +37,62 @@ namespace TrailLocker.Controllers
             return View();
         }
 
-    public ActionResult Facebook()
-    {
-        var fb = new FacebookClient();
-        var loginUrl = fb.GetLoginUrl(new {
-            client_id = "1424766361075600",
-            client_secret = "d23d50adbcd2ffc1077714cd63b7976d",
-            redirect_uri = RedirectUri.AbsoluteUri,
-            response_type = "code",
-            scope = "email" // Add other permissions as needed
-        });
-
-        return Redirect(loginUrl.AbsoluteUri);
-    }
-
-    public ActionResult FacebookCallback(string code)
-    {
-        var fb = new FacebookClient();
-        dynamic result = fb.Post("oauth/access_token", new
+        public ActionResult Facebook()
         {
-            client_id = "1424766361075600",
-            client_secret = "d23d50adbcd2ffc1077714cd63b7976d",
-            redirect_uri = RedirectUri.AbsoluteUri,
-            code = code
-        });
+            var fb = new FacebookClient();
+            var loginUrl = fb.GetLoginUrl(new {
+                client_id = "1424766361075600",
+                client_secret = "d23d50adbcd2ffc1077714cd63b7976d",
+                redirect_uri = RedirectUri.AbsoluteUri,
+                response_type = "code",
+                scope = "email" // Add other permissions as needed
+            });
 
-        var accessToken = result.access_token;
-
-        // TODO: Authenticate User
-
-        // Store the access token in the session
-        Session["AccessToken"] = accessToken;
-
-        // update the facebook client with the access token so 
-        // we can make requests on behalf of the user
-        fb.AccessToken = accessToken;
-
-        // Get the user's information
-        dynamic me = fb.Get("me?fields=first_name,last_name,id,email");
-        string email = me.email;
-
-        try{
-            User user = UserDB.FindBy(x => x.email == email).Single();
-            
-            FormsAuthentication.SetAuthCookie(email, false);
-            return RedirectToAction("Index", "Home");
-
-        }catch (InvalidOperationException e){
-            User new_user = new User(me.first_name,me.last_name,me.email);
-            return RedirectToAction("CreateAccount", new { user = new_user });
+            return Redirect(loginUrl.AbsoluteUri);
         }
 
-    }
-
-        //
-        // GET: Login/CreateAccount/
-        public ActionResult CreateAccount()
+        public ActionResult FacebookCallback(string code)
         {
-            return View();
-        }
-
-        //
-        // POST: Login/CreateAccount/
-        [HttpPost]
-        public ActionResult CreateAccount(User user)
-        {
-            if (ModelState.IsValid)
+            var fb = new FacebookClient();
+            dynamic result = fb.Post("oauth/access_token", new
             {
-                user.UserID = Guid.NewGuid();
-                UserDB.Add(user);
+                client_id = "1424766361075600",
+                client_secret = "d23d50adbcd2ffc1077714cd63b7976d",
+                redirect_uri = RedirectUri.AbsoluteUri,
+                code = code
+            });
+
+            var accessToken = result.access_token;
+
+            // TODO: Authenticate User
+
+            // Store the access token in the session
+            Session["AccessToken"] = accessToken;
+
+            // update the facebook client with the access token so 
+            // we can make requests on behalf of the user
+            fb.AccessToken = accessToken;
+
+            // Get the user's information
+            dynamic me = fb.Get("me?fields=first_name,last_name,id,email");
+            string email = me.email;
+
+            try{
+                User user = UserDB.FindBy(x => x.email == email).Single();
+            
+                FormsAuthentication.SetAuthCookie(email, false);
+                return RedirectToAction("Index", "Home");
+
+            }catch (InvalidOperationException e){ //Create new account
+                User new_user = new User(me.first_name,me.last_name,me.email);
+
+                UserDB.Add(new_user);
                 UserDB.Commit();
 
-                FormsAuthentication.SetAuthCookie(user.email, true);
+                FormsAuthentication.SetAuthCookie(new_user.email, true);
                 return RedirectToAction("Index", "Home");
             }
 
-            return View(user);
         }
     }
 }

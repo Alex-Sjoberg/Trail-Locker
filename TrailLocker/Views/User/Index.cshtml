@@ -12,10 +12,10 @@
 <table>
     <tr>
         <th>
-            username
+            email
         </th>
         <th>
-            name
+            first_name
         </th>
         <th>
             home
@@ -29,10 +29,10 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.username)
+            @Html.DisplayFor(modelItem => item.email)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.name)
+            @Html.DisplayFor(modelItem => item.first_name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.home)

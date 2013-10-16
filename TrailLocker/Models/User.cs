@@ -9,7 +9,6 @@ namespace TrailLocker.Models
     public class User : TrailLocker.Controllers.LoginModel
     {
         public Guid UserID { get; set; } //primary key in DB
-        public Guid TripID { get; set; } //foriegn key. TODO remove
 
         public String first_name { get; set; }
         public String last_name { get; set; }
@@ -24,6 +23,7 @@ namespace TrailLocker.Models
 
         public User(String username, String password, String name, String home, int maxWeight)
         {
+            this.UserID = Guid.NewGuid();
             this.first_name = name;
             this.home = home;
             this.maxWeight = maxWeight;
@@ -31,6 +31,7 @@ namespace TrailLocker.Models
 
         public User(String first_name, String last_name, String email)
         {
+            this.UserID = Guid.NewGuid();
             this.first_name = first_name;
             this.last_name = last_name;
             this.email = email;
@@ -38,6 +39,7 @@ namespace TrailLocker.Models
 
         public User()
         {
+            this.UserID = Guid.NewGuid();
             this.first_name = "Unknown";
             this.maxWeight = 0;
             this.trips = new List<Trip>();
