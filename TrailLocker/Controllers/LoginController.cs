@@ -56,8 +56,8 @@ namespace TrailLocker.Controllers
         var fb = new FacebookClient();
         dynamic result = fb.Post("oauth/access_token", new
         {
-            client_id = "your_app_id_here",
-            client_secret = "your_app_secret_here",
+            client_id = "1424766361075600",
+            client_secret = "d23d50adbcd2ffc1077714cd63b7976d",
             redirect_uri = RedirectUri.AbsoluteUri,
             code = code
         });
@@ -65,6 +65,21 @@ namespace TrailLocker.Controllers
         var accessToken = result.access_token;
 
         // TODO: Authenticate User
+
+        // Store the access token in the session
+        Session["AccessToken"] = accessToken;
+
+        // update the facebook client with the access token so 
+        // we can make requests on behalf of the user
+        fb.AccessToken = accessToken;
+
+        // Get the user's information
+        dynamic me = fb.Get("me?fields=first_name,last_name,id,email");
+        string email = me.email;
+
+        // Set the auth cookie
+        FormsAuthentication.SetAuthCookie("admin", false);
+
         return RedirectToAction("Index", "Home");
     }
 
