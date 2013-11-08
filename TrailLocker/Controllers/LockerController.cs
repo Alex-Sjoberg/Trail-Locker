@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using TrailLocker.Models;
 using TrailLocker.Repository;
+using TrailLocker.Models.Items;
 
 namespace TrailLocker.Controllers
 { 
@@ -41,8 +42,10 @@ namespace TrailLocker.Controllers
 
         public ActionResult Create()
         {
+
             return View();
-        } 
+        }
+
 
         //
         // POST: /Item/Create

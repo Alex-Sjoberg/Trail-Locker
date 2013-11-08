@@ -7,3 +7,12 @@ C:\Users\asjoberg\Dropbox\TrailLocker\TrailLocker\obj\Debug\TrailLocker.dll
 C:\Users\asjoberg\Dropbox\TrailLocker\TrailLocker\obj\Debug\TrailLocker.pdb
 C:\Users\asjoberg\Dropbox\TrailLocker\TrailLocker\bin\Facebook.dll
 C:\Users\asjoberg\Dropbox\TrailLocker\TrailLocker\bin\Facebook.xml
+X:\Trail-Locker\TrailLocker\obj\Debug\TrailLocker.csprojResolveAssemblyReference.cache
+X:\Trail-Locker\TrailLocker\obj\Debug\TrailLocker.dll
+X:\Trail-Locker\TrailLocker\obj\Debug\TrailLocker.pdb
+X:\Trail-Locker\TrailLocker\bin\TrailLocker.dll
+X:\Trail-Locker\TrailLocker\bin\TrailLocker.pdb
+X:\Trail-Locker\TrailLocker\bin\EntityFramework.dll
+X:\Trail-Locker\TrailLocker\bin\Facebook.dll
+X:\Trail-Locker\TrailLocker\bin\EntityFramework.xml
+X:\Trail-Locker\TrailLocker\bin\Facebook.xml

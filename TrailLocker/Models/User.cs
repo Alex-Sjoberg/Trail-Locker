@@ -35,6 +35,8 @@ namespace TrailLocker.Models
             this.first_name = first_name;
             this.last_name = last_name;
             this.email = email;
+            this.locker = new Locker(this.UserID);
+            this.locker.owner = this;
         }
 
         public User()

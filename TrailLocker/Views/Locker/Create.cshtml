@@ -14,6 +14,7 @@
     <fieldset>
         <legend>Locker</legend>
 
+        <!--
         <div class="editor-label">
             @Html.LabelFor(model => model.UserID)
         </div>
@@ -21,6 +22,19 @@
             @Html.EditorFor(model => model.UserID)
             @Html.ValidationMessageFor(model => model.UserID)
         </div>
+        -->
+
+        <div class="editor-label">
+            @Html.LabelFor(item => item.UserID)
+        </div>
+        <select name = "dropdown">
+            <option>Food</option>
+            <option>Hammock</option>
+            <option>Shoes</option>
+            <option>Tools</option>
+            <option>Sleepingbag</option>
+            <option>Tent</option>
+        </select>
 
         <p>
             <input type="submit" value="Create" />

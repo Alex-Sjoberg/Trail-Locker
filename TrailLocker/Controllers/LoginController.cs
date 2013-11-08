@@ -78,21 +78,34 @@ namespace TrailLocker.Controllers
             string email = me.email;
 
             try{
-                User user = UserDB.FindBy(x => x.email == email).Single();
-            
-                FormsAuthentication.SetAuthCookie(email, false);
-                return RedirectToAction("Index", "Home");
-
-            }catch (InvalidOperationException e){ //Create new account
-                User new_user = new User(me.first_name,me.last_name,me.email);
-
-                UserDB.Add(new_user);
-                UserDB.Commit();
-
-                FormsAuthentication.SetAuthCookie(new_user.email, true);
-                return RedirectToAction("Index", "Home");
+                var query = UserDB.FindBy(x => x.email == email);
+                var user = query.SingleOrDefault();
+                if (user == null)                
+                    user = CreateNewUser(me);                                           
+            }catch (InvalidOperationException e){ //Create new account                
             }
+            FormsAuthentication.SetAuthCookie(email, false);
+            return RedirectToAction("Index", "Home");
 
+        }
+
+        private User CreateNewUser(dynamic me)
+        {
+            User new_user = new User(me.first_name, me.last_name, me.email);
+
+            UserDB.Add(new_user);
+            UserDB.Commit();
+
+            Locker new_locker = new Locker(new_user.UserID);
+
+
+            LockerDB.Add(new_locker);
+            LockerDB.Commit();
+
+            new_user.locker = new_locker;
+            UserDB.Attach(new_user);
+            UserDB.Commit();
+            return new_user;
         }
     }
 }

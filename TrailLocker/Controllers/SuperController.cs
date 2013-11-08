@@ -36,7 +36,8 @@ namespace TrailLocker.Controllers
         {
 
             string email = get_current_email();
-            User user = UserDB.FindBy(x => x.email == email).Single();
+            IEnumerable<User> list = UserDB.FindBy(x => x.email == email);
+            User user = list.Single();
             return user;
         }
 

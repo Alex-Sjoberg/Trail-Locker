@@ -62,6 +62,7 @@ namespace TrailLocker.Controllers
 
                 trip.trip_leader = trip_leader;
                 trip_leader.trips.Add(trip);
+
                 UserDB.Attach(trip_leader);
 
 
